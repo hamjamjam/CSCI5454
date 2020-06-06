@@ -1,10 +1,10 @@
 %% Fit model to training set
-[B,dev,stats] = mnrfit(Xtrain, Ytrain);
+[B,dev,stats] = mnrfit(Xtrain_dip, Ytrain);
 
 b = glmfit(Xtrain,Ytrain,'binomial','link','logit');
 
 %% Predict probabilities for test set
-Predicted_probabilities = glmval(b, Xtest,'logit');
+Predicted_probabilities = glmval(b, Xtest_dip,'logit');
 %Predicted_probabilities = glmval(b,Xtest);
 
 %% Count how many predictions were correct

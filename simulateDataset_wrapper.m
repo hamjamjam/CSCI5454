@@ -127,9 +127,15 @@ end
 %     sTable = array2table(features,'VariableNames',colNames)
 
 %% Split data into training and test sets
+[row, col] = find(isnan(features));
+features(row,:) = [];
+SRvsNoSR(row) = [];
 split_ind = floor(0.8   *length(features)); %TEMPORARILY CHANGING TO 50/50 FOR CONFUSION MATRIX
 
 Xtrain = features(1:split_ind,2:end);
 Ytrain = categorical(SRvsNoSR(1:split_ind,1));
 Xtest = features((split_ind+1):end,2:end);
 Ytest = categorical(SRvsNoSR((split_ind+1):end,1));
+
+Xall = features(:,2:end);
+Yall = categorical(SRvsNoSR(:,1));
